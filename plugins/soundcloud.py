@@ -2,7 +2,7 @@ import soundcloud
 from util import hook
 
 # create a client object with your app credentials
-client = soundcloud.Client(client_id='1c3f2d9b05a2f4e8f5454da36c3bd666')
+client = soundcloud.Client(client_id='APIKEY')
 
 @hook.command
 def soundcloud(search):
