@@ -14,9 +14,9 @@ if not os.path.exists('config'):
           {
             "local irc":
             {
-              "server": "localhost",
-              "nick": "skybot",
-              "channels": ["#test"]
+              "server": "irc.freenode.net",
+              "nick": "brogleBot",
+              "channels": ["#brogle"]
             }
           },
           "disabled_plugins": [],
