@@ -11,7 +11,6 @@ soundcloud_re = (r'((https|http)?:\/\/(soundcloud.com)\/(.*)\/(.*))', re.I)
 def soundcloud(search):
         if(search==''):
                 return "Usage: .soundcloud *trackname*"
-        # find all sounds of buskers licensed under 'creative commons share alike'
         track = client.get('/tracks', q=search, order='hotness', streamable='true', limit=1)[0]
         return "*" + track.user["username"] + "*" + " | " + track.title + " | " + track.permalink_url
 
@@ -22,6 +21,5 @@ def sc(search):
 
 @hook.regex(*soundcloud_re)
 def soundcloud_url(match):
-        #return match.group(0)
         track = client.get('/resolve', url=match.group(0))
         return "*" + track.user["username"] + "*" + " | " + track.title
