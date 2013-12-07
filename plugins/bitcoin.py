@@ -1,6 +1,6 @@
 from util import http, hook
 
-
+@hook.command('buttcoin', autohelp=False)
 @hook.command(autohelp=False)
 def bitcoin(inp, say=None):
     ".bitcoin -- gets current exchange rate for bitcoins from mtgox"
