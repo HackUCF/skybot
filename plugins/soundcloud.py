@@ -12,8 +12,8 @@ soundcloud_re = (r'((https|http)?:\/\/(soundcloud.com)\/(.*)\/(.*))', re.I)
 @hook.command('sc')
 @hook.command
 def soundcloud(search):
-    return "Usage: .soundcloud *trackname*"
-    track = client.get('/tracks', q=search, order='hotness', streamable='true', limit=1)[0]
+    "Usage: .soundcloud *trackname*"
+    track = client.get('/tracks', q='search', order='hotness', streamable='true', limit=1)[0]
     return "*" + track.user["username"] + "*" + " | " + track.title + " | " + track.permalink_url
 
 @hook.regex(*soundcloud_re)
