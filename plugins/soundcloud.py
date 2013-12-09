@@ -7,7 +7,7 @@ import re
 # create a client object with your app credentials
 client = soundcloud.Client(client_id=api_key)
 
-soundcloud_re = (r'((https|http)?:\/\/(soundcloud.com)\/(.*)\/(.*))', re.I)
+soundcloud_re = (r'(?:(https|http)?:\/\/(soundcloud.com)\/(.*)\/(.*))', re.I)
 
 @hook.command('sc')
 @hook.command
