@@ -9,7 +9,7 @@ def litecoin(inp, say=None):
         'buy': data['buy'],
         'high': data['high'],
         'low': data['low'],
-        'vol': '{:,.2f}'.format(data['vol']),
+        'vol': '{:,.2f}'.format(data['vol_cur']),
     }
     say("Current: \x0307$%(buy)s\x0f - High: \x0307$%(high)s\x0f"
         " - Low: \x0307$%(low)s\x0f - Volume: %(vol)s LTC" % ticker)
