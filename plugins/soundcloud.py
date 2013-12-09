@@ -9,19 +9,14 @@ client = soundcloud.Client(client_id=api_key)
 
 soundcloud_re = (r'((https|http)?:\/\/(soundcloud.com)\/(.*)\/(.*))', re.I)
 
+@hook.command('sc')
 @hook.command
 def soundcloud(search):
-        if(search==''):
-                return "Usage: .soundcloud *trackname*"
-        track = client.get('/tracks', q=search, order='hotness', streamable='true', limit=1)[0]
-        return "*" + track.user["username"] + "*" + " | " + track.title + " | " + track.permalink_url
-
-@hook.command
-def sc(search):
-        return soundcloud(search)
-
+    return "Usage: .soundcloud *trackname*"
+    track = client.get('/tracks', q=search, order='hotness', streamable='true', limit=1)[0]
+    return "*" + track.user["username"] + "*" + " | " + track.title + " | " + track.permalink_url
 
 @hook.regex(*soundcloud_re)
 def soundcloud_url(match):
-        track = client.get('/resolve', url=match.group(0))
-        return "*" + track.user["username"] + "*" + " | " + track.title
+    track = client.get('/resolve', url=match.group(0))
+    return "*" + track.user["username"] + "*" + " | " + track.title
