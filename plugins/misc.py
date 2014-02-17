@@ -53,8 +53,9 @@ def onjoin(paraml, conn=None):
         conn.cmd('MODE', [conn.nick, mode])
 
     # join channels
-    for channel, password in conn.channels:
-        conn.join(channel, password)
+    for channel_data in conn.channels:
+        conn.join(channel_data['name'], channel_data['password'])
+        conn.join(channel_data['name'], channel_data['password'])
         time.sleep(1)  # don't flood JOINs
 
     # set user-agent
