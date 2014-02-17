@@ -18,7 +18,7 @@ if not os.path.exists('config'):
               "nick": "brogleBot",
               "channels": [
                 {
-                  name: "#brogle"
+                  name: "#brogle",
                   password: null
                 },
                 {
