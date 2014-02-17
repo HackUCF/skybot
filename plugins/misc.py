@@ -55,7 +55,6 @@ def onjoin(paraml, conn=None):
     # join channels
     for channel_data in conn.channels:
         conn.join(channel_data['name'], channel_data['password'])
-        conn.join(channel_data['name'], channel_data['password'])
         time.sleep(1)  # don't flood JOINs
 
     # set user-agent
