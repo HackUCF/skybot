@@ -9,4 +9,5 @@ pep8.py
 .pydevproject
 *.db
 web
-/debug.txt
+debug.txt
+nohup.out
