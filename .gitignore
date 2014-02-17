@@ -3,6 +3,7 @@
 *.orig
 persist
 config
+core/config.py
 pep8.py
 .project
 .pydevproject
