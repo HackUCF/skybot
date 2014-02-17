@@ -16,7 +16,15 @@ if not os.path.exists('config'):
             {
               "server": "irc.freenode.net",
               "nick": "brogleBot",
-              "channels": ["#brogle"]
+              "channels": [
+                {
+                  "name": "#brogle",
+                  "password": null
+                },
+                {
+                  "name": "#passworded",
+                  "password": "pword"
+              ]
             }
           },
           "disabled_plugins": [],
