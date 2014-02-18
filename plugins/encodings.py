@@ -13,7 +13,7 @@ def b64decode(inp):
 	try:
 		return inp.decode("base64")
 	except binascii.Error, e:
-		return "error decoding: " + e
+		return "error decoding: " + str(e)
 
 
 @hook.command("hex")
@@ -28,7 +28,7 @@ def hexdecode(inp):
 	try:
 		return inp.decode("hex")
 	except TypeError, e:
-		return "error decoding: " + e
+		return "error decoding: " + str(e)
 
 
 @hook.command("rot13".encode("rot13"))
