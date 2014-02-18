@@ -8,7 +8,7 @@ class scclient(object):
 		self.func = func
 	
 	def __call__(self, *args, **kwargs):
-		kwargs["client"] = soundcloud.Client(client_id=kwargs.pop("api_key"))
+		kwargs["client"] = soundcloud.Client(client_id=kwargs["api_key"])
 		return self.func(*args, **kwargs)
 
 
