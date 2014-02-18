@@ -3,7 +3,6 @@ from util import hook
 
 @hook.command("b64")
 @hook.command("b64enc")
-@hook.command("b64encode")
 @hook.command
 def b64encode(inp):
 	return inp.encode("base64")
