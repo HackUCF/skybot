@@ -15,7 +15,7 @@ def suggest(inp, inp_unstripped=''):
         num, inp = m.groups()
         num = int(num)
         if num > 10:
-            return 'can only get first ten suggestions'
+			return 'can only get first ten suggestions'
     else:
         num = 0
 
@@ -30,4 +30,4 @@ def suggest(inp, inp_unstripped=''):
         out = suggestions[num - 1]
     else:
         out = random.choice(suggestions)
-    return '#%d: %s' % (int(out[2][0]) + 1, out[0].replace('<b>', '').replace('</b>', ''))
+    return '%s' % (out[0].replace('<b>', '').replace('</b>', ''))
