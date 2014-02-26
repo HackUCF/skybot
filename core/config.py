@@ -24,6 +24,7 @@ if not os.path.exists('config'):
                 {
                   "name": "#passworded",
                   "password": "pword"
+                }
               ]
             }
           },
