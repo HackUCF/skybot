@@ -1,4 +1,5 @@
 from util import http, hook
+import re
 
 @hook.command('buttcoin', autohelp=False)
 @hook.command(autohelp=False)
