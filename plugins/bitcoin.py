@@ -10,7 +10,7 @@ def bitcoin(inp, say=None):
         " - Low: \x0307{low}\x0f - Volume: {vol_cur:.0f}".format(**data['ticker']))
 
 
-@hook.command('bitcat'. autohelp=False)
+@hook.command('bitcat', autohelp=False)
 @hook.command(autohelp=False)
 def bitcat(inp, say=None):
     ".bitcat -- ninjafish morning"
