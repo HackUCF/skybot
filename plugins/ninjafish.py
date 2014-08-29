@@ -1,6 +1,7 @@
 from util import http, hook  
 import re
 
+@hook.command('bitcatte', autohelp=False)
 @hook.command(autohelp=False)
 def bitcat(inp, say=None):
     ".bitcat -- ninjafish morning"
