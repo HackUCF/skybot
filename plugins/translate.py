@@ -52,7 +52,6 @@ def goog_trans(text, tlang="auto", slang="auto"):
     page = urllib2.urlopen(request).read()
     result = page[page.find(before_trans)+len(before_trans):]
     result = result.split("<")[0]
-    print("toto")
     return result
 
 
@@ -77,8 +76,6 @@ def translate(inp, bot=None):
 
     args = inp.split(' ', 2)
 
-
-    # print("call to translate function with len(args) = " + len(args))
     try:
         if len(args) >= 2:
             sl = match_language(args[0])
