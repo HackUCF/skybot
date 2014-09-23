@@ -7,4 +7,4 @@ def dogecoin(inp, say=None):
     data = data['return']
     data = data['markets']
     data = data['DOGE']
-    say("Current Doge: \x0307%s\x0f USD" % (data['lasttradeprice'])
+    say("Current Doge: \x0307%s\x0f USD" % (data['lasttradeprice']))
