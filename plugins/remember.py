@@ -88,4 +88,4 @@ def question(inp, chan='', say=None, db=None):
 
     data = get_memory(db, chan, inp.group(1).strip())
     if data:
-        say(data)
+        pm(data)
