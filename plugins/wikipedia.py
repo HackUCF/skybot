@@ -8,7 +8,6 @@ from util import hook, http
 
 api_prefix = "http://en.wikipedia.org/w/api.php"
 search_url = api_prefix + "?action=opensearch&format=xml"
-random_url = api_prefix + "?action=query&list=random&format=xml"
 
 paren_re = re.compile('\s*\(.*\)$')
 
@@ -19,10 +18,7 @@ def wiki(inp):
     '''.w/.wiki <phrase> -- gets first sentence of wikipedia ''' \
     '''article on <phrase>'''
 
-    if inp == 'random':
-        x = http.get_xml(random_url)
-    else:    
-        x = http.get_xml(search_url, search=inp)
+    x = http.get_xml(search_url, search=inp)
 
     ns = '{http://opensearch.org/searchsuggest2}' 
     items = x.findall(ns + 'Section/' + ns + 'Item')
