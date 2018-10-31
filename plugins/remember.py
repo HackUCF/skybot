@@ -82,10 +82,10 @@ def forget(inp, chan='', db=None):
 
 
 @hook.regex(r'^\? ?(.+)')
-def question(inp, chan='', say=None, db=None):
+def question(inp, chan='', pm=None, db=None):
     "?<word> -- shows what data is associated with word"
     db_init(db)
 
     data = get_memory(db, chan, inp.group(1).strip())
     if data:
-        say(data)
+        pm(data)

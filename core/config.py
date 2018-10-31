@@ -15,15 +15,12 @@ if not os.path.exists('config'):
             "local irc":
             {
               "server": "irc.freenode.net",
-              "nick": "brogleBot",
+              "nick": "testingBot",
               "channels": [
                 {
-                  "name": "#brogle",
+                  "name": "#bobbybluestesting",
                   "password": null
-                },
-                {
-                  "name": "#passworded",
-                  "password": "pword"
+                }
               ]
             }
           },

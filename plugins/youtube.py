@@ -62,7 +62,7 @@ def youtube_url(match):
     return get_video_description(match.group(1))
 
 
-@hook.command('y')
+@hook.command('yt')
 @hook.command
 def youtube(inp):
     '.youtube <query> -- returns the first YouTube search result for <query>'
