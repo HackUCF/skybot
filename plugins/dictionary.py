@@ -8,14 +8,13 @@ from util import hook, http
 def urban(inp):
     '''.u/.urban <phrase> -- looks up <phrase> on urbandictionary.com'''
 
-    url = 'http://www.urbandictionary.com/iphone/search/define'
-    page = http.get_json(url, term=inp, referer="http://m.urbandictionary.com")
+    page = http.get_json('https://api.urbandictionary.com/v0/define', term=inp)
     defs = page['list']
 
-    if page['result_type'] == 'no_results':
+    if not defs:
         return 'not found.'
 
-    out = defs[0]['word'] + ': ' + defs[0]['definition'].replace('\r\n',' ')
+    out = defs[0]['word'] + ': ' + defs[0]['definition'].replace('\r\n', ' ')
 
     if len(out) > 400:
         out = out[:out.rfind(' ', 0, 400)] + '...'
@@ -61,7 +60,7 @@ def define(inp):
             result += article[0]
             if len(article) > 2:
                 result += ' '.join('%d. %s' % (n + 1, section)
-                                    for n, section in enumerate(article[1:]))
+                                   for n, section in enumerate(article[1:]))
             else:
                 result += article[1] + ' '
 
@@ -89,18 +88,15 @@ def define(inp):
 def etymology(inp):
     ".e/.etymology <word> -- Retrieves the etymology of chosen word"
 
-    url = 'http://www.etymonline.com/index.php'
+    h = http.get_html('http://www.etymonline.com/search', q=inp)
 
-    h = http.get_html(url, term=inp)
-
-    etym = h.xpath('//dl')
+    etym = h.xpath('//a[contains(@class, "word")]/object')
 
     if not etym:
         return 'No etymology found for ' + inp
 
-    etym = etym[0].text_content()
-
-    etym = ' '.join(etym.split())
+    etym = ' '.join(sum((e.text_content().split() for e in etym[0]), []))
+    etym = etym.replace(inp, '\x02%s\x02' % inp)
 
     if len(etym) > 400:
         etym = etym[:etym.rfind(' ', 0, 400)] + ' ...'

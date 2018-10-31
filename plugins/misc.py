@@ -1,4 +1,3 @@
-import re
 import socket
 import subprocess
 import time
@@ -9,21 +8,23 @@ socket.setdefaulttimeout(10)  # global setting
 
 
 def get_version():
-    p = subprocess.Popen(['git', 'log', '--oneline'], stdout=subprocess.PIPE)
-    stdout, _ = p.communicate()
-    p.wait()
-
-    revnumber = len(stdout.splitlines())
-
-    shorthash = stdout.split(None, 1)[0]
+    try:
+        stdout = subprocess.check_output(['git', 'log', '--format=%h'])
+    except:
+        revnumber = 0
+        shorthash = '????'
+    else:
+        revs = stdout.splitlines()
+        revnumber = len(revs)
+        shorthash = revs[0]
 
     http.ua_skybot = 'Skybot/r%d %s (http://github.com/rmmh/skybot)' \
-                        % (revnumber, shorthash)
+        % (revnumber, shorthash)
 
     return shorthash, revnumber
 
 
-#autorejoin channels
+# autorejoin channels
 @hook.event('KICK')
 def rejoin(paraml, conn=None):
     if paraml[1] == conn.nick:
@@ -31,7 +32,7 @@ def rejoin(paraml, conn=None):
             conn.join(paraml[0])
 
 
-#join channels when invited
+# join channels when invited
 @hook.event('INVITE')
 def invite(paraml, conn=None):
     conn.join(paraml[-1])
@@ -40,25 +41,22 @@ def invite(paraml, conn=None):
 @hook.event('004')
 def onjoin(paraml, conn=None):
     # identify to services
-    nickserv_password = conn.conf.get('nickserv_password', '')
-    nickserv_name = conn.conf.get('nickserv_name', 'nickserv')
-    nickserv_command = conn.conf.get('nickserv_command', 'IDENTIFY %s')
+    nickserv_password = conn.nickserv_password
+    nickserv_name = conn.nickserv_name
+    nickserv_command = conn.nickserv_command
     if nickserv_password:
         conn.msg(nickserv_name, nickserv_command % nickserv_password)
         time.sleep(1)
 
     # set mode on self
-    mode = conn.conf.get('mode')
+    mode = conn.user_mode
     if mode:
         conn.cmd('MODE', [conn.nick, mode])
 
-    # join channels
-    for channel_data in conn.channels:
-        conn.join(channel_data['name'], channel_data['password'])
-        time.sleep(1)  # don't flood JOINs
+    conn.join_channels()
 
-    # set user-agent
-    ident, rev = get_version()
+    # set user-agent as a side effect of reading the version
+    get_version()
 
 
 @hook.regex(r'^\x01VERSION\x01$')

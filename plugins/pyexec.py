@@ -12,10 +12,10 @@ def python(inp):
 
     res = http.get("http://eval.appspot.com/eval", statement=inp).splitlines()
 
-    if not res:
+    if len(res) == 0:
         return
     res[0] = re_lineends.split(res[0])[0]
-    if res[0] != 'Traceback (most recent call last):':
+    if not res[0] == 'Traceback (most recent call last):':
         return res[0].decode('utf8', 'ignore')
     else:
         return res[-1].decode('utf8', 'ignore')
